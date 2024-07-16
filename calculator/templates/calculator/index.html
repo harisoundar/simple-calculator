@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Calculator</h1>
+        <div class="calculator">
+            <input type="text" id="result" class="form-control mb-3">
+            <div class="row">
+                <div class="col"><button onclick="appendNumber('7')" class="btn btn-primary btn-block">7</button></div>
+                <div class="col"><button onclick="appendNumber('8')" class="btn btn-primary btn-block">8</button></div>
+                <div class="col"><button onclick="appendNumber('9')" class="btn btn-primary btn-block">9</button></div>
+                <div class="col"><button onclick="operate('+')" class="btn btn-success btn-block">+</button></div>
+            </div>
+            <div class="row">
+                <div class="col"><button onclick="appendNumber('4')" class="btn btn-primary btn-block">4</button></div>
+                <div class="col"><button onclick="appendNumber('5')" class="btn btn-primary btn-block">5</button></div>
+                <div class="col"><button onclick="appendNumber('6')" class="btn btn-primary btn-block">6</button></div>
+                <div class="col"><button onclick="operate('-')" class="btn btn-success btn-block">-</button></div>
+            </div>
+            <div class="row">
+                <div class="col"><button onclick="appendNumber('1')" class="btn btn-primary btn-block">1</button></div>
+                <div class="col"><button onclick="appendNumber('2')" class="btn btn-primary btn-block">2</button></div>
+                <div class="col"><button onclick="appendNumber('3')" class="btn btn-primary btn-block">3</button></div>
+                <div class="col"><button onclick="operate('*')" class="btn btn-success btn-block">*</button></div>
+            </div>
+            <div class="row">
+                <div class="col"><button onclick="appendNumber('0')" class="btn btn-primary btn-block">0</button></div>
+                <div class="col"><button onclick="appendNumber('.')" class="btn btn-primary btn-block">.</button></div>
+                <div class="col"><button onclick="calculate()" class="btn btn-danger btn-block">=</button></div>
+                <div class="col"><button onclick="operate('/')" class="btn btn-success btn-block">/</button></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col"><button onclick="clearResult()" class="btn btn-warning btn-block">Clear</button></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let expression = '';
+        let result = document.getElementById('result');
+
+        function clearResult() {
+            expression = '';
+            updateResult();
+        }
+
+        function appendNumber(num) {
+            expression += num;
+            updateResult();
+        }
+
+        function operate(operator) {
+            expression += operator;
+            updateResult();
+        }
+
+        function calculate() {
+            try {
+                expression = eval(expression).toString();
+            } catch (error) {
+                expression = 'Error';
+            }
+            updateResult();
+        }
+
+        function updateResult() {
+            result.value = expression;
+        }
+    </script>
+</body>
+</html>
